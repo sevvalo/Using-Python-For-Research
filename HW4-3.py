@@ -1,14 +1,6 @@
 from collections import Counter
 import numpy as np
 
-def marginal_prob(chars):
-    new = {}
-    for value in chars.values():
-        new[value] = 0
-    for key in new:
-        new[key] = key / len(new)
-    return new
-        
         
 def chance_homophily(chars):
     a = Counter(chars.values())
@@ -23,6 +15,8 @@ favorite_colors = {
 }
 
 color_homophily = chance_homophily(favorite_colors)
+# the chance of red is 1/3 and blue is 2/3 therefore chance homophily is (1/3)^2 + (2/3)^2
+
 
 import pandas as pd
 
@@ -61,7 +55,7 @@ def homophily(G, chars, IDs):
 data_filepath1 = "https://courses.edx.org/asset-v1:HarvardX+PH526x+2T2019+type@asset+block@key_vilno_1.csv"
 data_filepath2 = "https://courses.edx.org/asset-v1:HarvardX+PH526x+2T2019+type@asset+block@key_vilno_2.csv"
 
-import networkx as nx
+
 A1 = np.array(pd.read_csv("https://courses.edx.org/asset-v1:HarvardX+PH526x+2T2019+type@asset+block@adj_allVillageRelationships_vilno1.csv", index_col=0))
 A2 = np.array(pd.read_csv("https://courses.edx.org/asset-v1:HarvardX+PH526x+2T2019+type@asset+block@adj_allVillageRelationships_vilno2.csv", index_col=0))
 G1 = nx.to_networkx_graph(A1)
